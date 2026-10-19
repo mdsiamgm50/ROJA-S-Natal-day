@@ -48,61 +48,6 @@
             100% { opacity: 1; }
         }
 
-        /* Music Toggle Button */
-        .music-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 100;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: #ffd700;
-            padding: 10px 18px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            transition: 0.3s;
-        }
-
-        .music-btn:hover {
-            transform: scale(1.05);
-            background: rgba(255, 255, 255, 0.25);
-        }
-
-        /* Bottom Decor Balloons */
-        .bottom-decor {
-            position: fixed;
-            bottom: -10px;
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            pointer-events: none;
-            z-index: 10;
-        }
-
-        .bottom-balloon {
-            width: 50px;
-            height: 65px;
-            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
-            background: radial-gradient(circle at 30% 30%, #ffd700, #b8860b);
-            box-shadow: inset -5px -5px 10px rgba(0,0,0,0.5);
-            animation: floatSlow 3s ease-in-out infinite alternate;
-        }
-
-        .bottom-balloon:nth-child(even) {
-            background: radial-gradient(circle at 30% 30%, #e84393, #8e44ad);
-        }
-
-        @keyframes floatSlow {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-10px); }
-        }
-
         /* Main Card Container */
         .card {
             background: rgba(255, 255, 255, 0.08);
@@ -129,10 +74,10 @@
             to { opacity: 1; transform: scale(1); }
         }
 
-        /* Animated Cute Cat Image */
+        /* Animated Cute Cat Sticker */
         .cat-sticker-img {
-            width: 120px;
-            height: 120px;
+            width: 110px;
+            height: 110px;
             margin: 0 auto 15px;
             object-fit: contain;
             display: block;
@@ -175,7 +120,21 @@
             transform: translateY(-3deg) scale(1.03);
         }
 
-        /* Age Slot Machine Screen */
+        /* Step 1: Interactive Heart Pull */
+        .heart-box {
+            font-size: 70px;
+            cursor: pointer;
+            animation: pulseHeart 1.2s infinite alternate;
+            margin: 20px 0;
+            display: inline-block;
+        }
+
+        @keyframes pulseHeart {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.15); }
+        }
+
+        /* Step 2: Milestone Slot Machine */
         .number-box-container {
             display: flex;
             justify-content: center;
@@ -208,7 +167,7 @@
             100% { transform: rotateX(360deg); opacity: 1; }
         }
 
-        /* Balloon Pop Screen */
+        /* Step 3: Balloon Pop Screen */
         .balloon-area {
             height: 200px;
             position: relative;
@@ -217,24 +176,14 @@
         }
 
         .real-balloon {
-            width: 55px;
-            height: 70px;
+            width: 50px;
+            height: 65px;
             border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
             position: absolute;
             bottom: -80px;
             cursor: pointer;
             animation: floatUp 5s infinite ease-in;
-            box-shadow: inset -6px -6px 12px rgba(0,0,0,0.3);
-        }
-
-        .real-balloon::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 24px;
-            width: 2px;
-            height: 12px;
-            background: rgba(255,255,255,0.5);
+            box-shadow: inset -5px -5px 10px rgba(0,0,0,0.3);
         }
 
         @keyframes floatUp {
@@ -253,7 +202,7 @@
             animation: fadeIn 0.4s ease;
         }
 
-        /* Cake & Candles */
+        /* Step 4: Cake & Candles */
         .cake-container {
             position: relative;
             margin: 30px auto 10px;
@@ -303,30 +252,12 @@
             display: none;
         }
 
-        /* Smoke effect after blowing candle */
-        .smoke {
-            position: absolute;
-            top: -25px;
-            left: 1px;
-            width: 8px;
-            height: 15px;
-            background: rgba(200, 200, 200, 0.6);
-            border-radius: 50%;
-            filter: blur(2px);
-            animation: riseSmoke 1.2s ease-out forwards;
-        }
-
-        @keyframes riseSmoke {
-            0% { opacity: 0.8; transform: translateY(0) scale(1); }
-            100% { opacity: 0; transform: translateY(-20px) scale(2); }
-        }
-
         @keyframes flicker {
             0% { transform: scale(1); }
             100% { transform: scale(1.15); }
         }
 
-        /* Letter Box with Typewriter Effect */
+        /* Step 5: Typewriter Letter Box */
         .letter-content {
             text-align: left;
             background: rgba(0,0,0,0.25);
@@ -342,7 +273,7 @@
             line-height: 1.6;
         }
 
-        /* Final Gift Box */
+        /* Step 6: Final Gift Box */
         .gift-box-icon {
             font-size: 85px;
             cursor: pointer;
@@ -360,55 +291,40 @@
 
     <div class="stars"></div>
 
-    <!-- Music Button -->
-    <button class="music-btn" onclick="toggleMusic()">
-        <span id="music-icon">🎵</span> <span id="music-text">Play Music</span>
-    </button>
-    <audio id="bg-music" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=happy-birthday-113337.mp3"></audio>
-
-    <div class="bottom-decor">
-        <div class="bottom-balloon"></div>
-        <div class="bottom-balloon"></div>
-        <div class="bottom-balloon"></div>
-        <div class="bottom-balloon"></div>
-        <div class="bottom-balloon"></div>
-    </div>
-
-    <!-- Screen 1: Welcome -->
+    <!-- Step 1: Entry Screen (Heart Touch) -->
     <div class="card active" id="step1">
-        <img class="cat-sticker-img" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z2dG5xZ3gxeW5ycWpxYTZmYm54MDFid25zcHFndWV2MGk3bmF0cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/C9x8gX02fJ3UU407J4/giphy.gif" alt="Cute Cat">
-        <h1>Hello, Roja! ✨</h1>
-        <p>Today is a very special day! Welcome to your personal galaxy of surprises...</p>
-        <button class="btn" onclick="nextStep(2)">✨ Let's Decorate</button>
+        <div class="heart-box" onclick="nextStep(2)">❤️</div>
+        <h1>A Little Something For You</h1>
+        <p>Tap the heart to open your birthday surprise, Roja!</p>
     </div>
 
-    <!-- Screen 2: Age Slot Machine (21 Years) -->
+    <!-- Step 2: Age Milestone -->
     <div class="card" id="step2">
         <img class="cat-sticker-img" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z2dG5xZ3gxeW5ycWpxYTZmYm54MDFid25zcHFndWV2MGk3bmF0cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/C9x8gX02fJ3UU407J4/giphy.gif" alt="Cute Cat">
-        <h2>A Special Milestone</h2>
-        <p>Let's see how many wonderful years you've collected...</p>
+        <h2>It's Officially Your Day!</h2>
+        <p>Let's see your special milestone...</p>
         <div class="number-box-container">
             <div class="number-box" id="num1">0</div>
             <div class="number-box" id="num2">0</div>
         </div>
-        <p id="age-text" style="display:none; color:#ffd700; font-weight:bold;">21 years of smiles, grace, and incredible memories ❤️</p>
-        <button class="btn" id="spin-btn" onclick="spinAge()">Spin to Reveal</button>
+        <p id="age-text" style="display:none; color:#ffd700; font-weight:bold;">And just like that, you're turning 21!</p>
+        <button class="btn" id="spin-btn" onclick="spinAge()">Reveal Age</button>
         <button class="btn" id="next2-btn" style="display:none;" onclick="nextStep(3)">Continue ➔</button>
     </div>
 
-    <!-- Screen 3: Pop the Balloons -->
+    <!-- Step 3: Pop the Balloons -->
     <div class="card" id="step3">
         <h2>Pop the Balloons 🎈</h2>
-        <p>Tap each floating balloon to uncover something sweet!</p>
+        <p>Pop each balloon to uncover sweet notes!</p>
         <div class="balloon-area" id="balloon-container"></div>
         <div id="tags-area"></div>
         <br>
         <button class="btn" onclick="nextStep(4)">Make a Wish 🎂</button>
     </div>
 
-    <!-- Screen 4: Cake & Blow Candles -->
+    <!-- Step 4: Cake & Candles -->
     <div class="card" id="step4">
-        <h2>Make a Wish, Roja! 🎂</h2>
+        <h2>Baking Something Sweet... 🎂</h2>
         <p>Tap each candle flame to blow it out.</p>
         <div class="cake-container">
             <div class="candles-group">
@@ -420,64 +336,26 @@
             <div class="cake-base"></div>
         </div>
         <div id="wish-success" style="display:none; margin-top:20px;">
-            <img class="cat-sticker-img" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHc3ZnZ5eW8xbjFkZmJ4OHRtczVxbDk5NG9zZjI1dnpnYXVsaGlweCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Kxsc0vO1I7vO3O26nZ/giphy.gif" alt="Party Cat">
-            <h2 style="font-size:1.8rem;">Happy 21st Birthday, Roja! 🎉</h2>
+            <h2 style="font-size:1.8rem; color:#ffd700;">Happy Birthday, Roja! 🎉</h2>
             <button class="btn" onclick="nextStep(5)">Open Your Letter ✉️</button>
         </div>
     </div>
 
-    <!-- Screen 5: Typewriter Letter -->
+    <!-- Step 5: Typewriter Letter -->
     <div class="card" id="step5">
-        <img class="cat-sticker-img" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHc3ZnZ5eW8xbjFkZmJ4OHRtczVxbDk5NG9zZjI1dnpnYXVsaGlweCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Kxsc0vO1I7vO3O26nZ/giphy.gif" alt="Party Cat">
         <h2>Dear Roja 💌</h2>
         <div class="letter-content" id="typed-letter"></div>
-        <button class="btn" id="letter-btn" style="display:none;" onclick="nextStep(6)">One Last Surprise ➔</button>
+        <button class="btn" id="letter-btn" style="display:none;" onclick="nextStep(6)">Final Surprise ➔</button>
     </div>
 
-    <!-- Screen 6: Final Gift Box -->
+    <!-- Step 6: Final Gift Box -->
     <div class="card" id="step6">
-        <h2>Your Final Birthday Surprise 🎁</h2>
-        <p>Tap the gift box below to unwrap it!</p>
-        <div class="gift-box-icon" onclick="openGift()">🎁</div>
-        <div id="final-message" style="display:none; margin-top:15px;">
-            <h1 style="color:#ffd700;">Happy Birthday, Roja! ❤️✨</h1>
-            <p>May your 21st year be filled with endless joy, success, and pure magic!</p>
-        </div>
+        <img class="cat-sticker-img" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHc3ZnZ5eW8xbjFkZmJ4OHRtczVxbDk5NG9zZjI1dnpnYXVsaGlweCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Kxsc0vO1I7vO3O26nZ/giphy.gif" alt="Party Cat">
+        <h2>Happy Birthday, Roja! ❤️✨</h2>
+        <p>Made with love, just for you. May your 21st year be filled with endless magic and happiness!</p>
     </div>
 
     <script>
-        // Audio Effects & Music
-        const music = document.getElementById('bg-music');
-        let isPlaying = false;
-
-        function toggleMusic() {
-            if(isPlaying) {
-                music.pause();
-                document.getElementById('music-text').innerText = "Play Music";
-                document.getElementById('music-icon').innerText = "🎵";
-            } else {
-                music.play();
-                document.getElementById('music-text').innerText = "Pause Music";
-                document.getElementById('music-icon').innerText = "🎶";
-            }
-            isPlaying = !isPlaying;
-        }
-
-        function playPopSound() {
-            const ctx = new (window.AudioContext || window.webkitAudioContext)();
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(600, ctx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 0.1);
-            gain.gain.setValueAtTime(0.3, ctx.currentTime);
-            gain.gain.linearRampToValueAtTime(0, ctx.currentTime + 0.1);
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-            osc.start();
-            osc.stop(ctx.currentTime + 0.1);
-        }
-
         function nextStep(stepNumber) {
             document.querySelectorAll('.card').forEach(card => card.classList.remove('active'));
             document.getElementById('step' + stepNumber).classList.add('active');
@@ -501,12 +379,12 @@
                 document.getElementById('age-text').style.display = 'block';
                 document.getElementById('spin-btn').style.display = 'none';
                 document.getElementById('next2-btn').style.display = 'inline-block';
-                confetti({ particleCount: 60, spread: 70 });
+                confetti({ particleCount: 70, spread: 80 });
             }, 800);
         }
 
         /* Balloon Pop Logic */
-        const compliments = ["Beautiful 💖", "Kind Hearted 🌸", "Super Smart ✨", "Charming 👑", "Pure Magic 🌟"];
+        const compliments = ["You make ordinary days feel special ✨", "My worst days get shorter when you call 💖", "You believed in me when I didn't 🌸", "Your laugh is my favourite sound 👑", "The world is kinder with you in it 🌟"];
         function startBalloons() {
             const container = document.getElementById('balloon-container');
             container.innerHTML = '';
@@ -516,12 +394,11 @@
                 let b = document.createElement('div');
                 b.className = 'real-balloon';
                 b.style.backgroundColor = colors[i];
-                b.style.left = (i * 20 + 5) + '%';
-                b.style.animationDelay = (i * 0.7) + 's';
+                b.style.left = (i * 18 + 8) + '%';
+                b.style.animationDelay = (i * 0.6) + 's';
                 b.onclick = function() {
-                    playPopSound();
                     this.remove();
-                    let tag = document.createElement('span');
+                    let tag = document.createElement('div');
                     tag.className = 'compliment-tag';
                     tag.innerText = compliments[i];
                     document.getElementById('tags-area').appendChild(tag);
@@ -535,15 +412,7 @@
         let blownCount = 0;
         function blowCandle(flameElement) {
             if(!flameElement.classList.contains('off')) {
-                playPopSound();
                 flameElement.classList.add('off');
-                
-                // Add smoke effect
-                let candle = flameElement.parentElement;
-                let smoke = document.createElement('div');
-                smoke.className = 'smoke';
-                candle.appendChild(smoke);
-
                 blownCount++;
                 if(blownCount === 4) {
                     confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
@@ -553,13 +422,13 @@
         }
 
         /* Typewriter Letter Effect */
-        const letterText = "Happy 21st Birthday, Roja! 🎉\n\nToday marks a wonderful milestone in your life. You bring so much joy, warmth, and light to everyone around you.\n\nMay this new chapter bring you endless success, happiness, and all the love you deserve. Always keep shining!";
+        const letterText = "Dear Roja,\n\nEvery year, I try to find the perfect words, and every year, I fall short. Here is to the honest version: You make my most ordinary days feel worth remembering.\n\nHappy birthday, my favourite person!\n\nWith all my love, - Siam";
         
         function startTypewriter() {
             const container = document.getElementById('typed-letter');
             container.innerText = '';
             let i = 0;
-            const speed = 40;
+            const speed = 35;
 
             function type() {
                 if (i < letterText.length) {
@@ -571,13 +440,6 @@
                 }
             }
             type();
-        }
-
-        /* Final Gift Logic */
-        function openGift() {
-            playPopSound();
-            confetti({ particleCount: 250, spread: 120, origin: { y: 0.5 } });
-            document.getElementById('final-message').style.display = 'block';
         }
     </script>
 </body>
