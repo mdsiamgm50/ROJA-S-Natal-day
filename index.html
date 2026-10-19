@@ -335,7 +335,7 @@
 
         .letter-content {
             text-align: left; background: rgba(0,0,0,0.3);
-            padding: 18px; border-radius: 18px; font-size: 0.88rem;
+            padding: 16px; border-radius: 18px; font-size: 0.85rem;
             max-height: 230px; overflow-y: auto; margin-bottom: 15px;
             border: 1px solid rgba(255,255,255,0.15); line-height: 1.6;
         }
@@ -431,4 +431,120 @@
     </div>
 
     <div class="card" id="step5">
-        <img class="cat-sticker-img" src="
+        <img class="cat-sticker-img" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHc3ZnZ5eW8xbjFkZmJ4OHRtczVxbDk5NG9zZjI1dnpnYXVsaGlweCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Kxsc0vO1I7vO3O26nZ/giphy.gif" alt="Cat">
+        <h2>My Dear Roja</h2>
+        <div class="letter-content">
+            <p>We have been friends for over 10 years now. Even today, I talk to you every day in a way I don't talk to any other friend even in a whole week! Most importantly, you are my only girl best friend with whom I share things that I don't with anyone else. So, you can already understand how much you mean to me.</p>
+            <br>
+            <p>Please stay well, and I pray that you manage to fulfill all your dreams. Happy 21st Birthday, Roja! ❤️✨</p>
+        </div>
+        <button class="btn" onclick="nextStep(6)">One Last Thing ➔</button>
+    </div>
+
+    <div class="card" id="step6">
+        <h2>One Last Thing For You...</h2>
+        <p>Tap the gift to open your final surprise!</p>
+        <div class="gift-box-icon" onclick="openGift()">🎁</div>
+        <div id="final-message" style="display:none; margin-top:15px;">
+            <h1 style="color:#ffd700;">Have the Best Birthday Ever! ❤️✨</h1>
+            <p>May all your dreams come true!</p>
+        </div>
+    </div>
+
+    <script>
+        function nextStep(stepNumber) {
+            document.querySelectorAll('.card').forEach(card => card.classList.remove('active'));
+            document.getElementById('step' + stepNumber).classList.add('active');
+            if(stepNumber === 3) startBalloons();
+        }
+
+        function spinAge() {
+            let n1 = document.getElementById('num1');
+            let n2 = document.getElementById('num2');
+            n1.classList.add('spin-anim'); n2.classList.add('spin-anim');
+
+            setTimeout(() => {
+                n1.innerText = '2'; n2.innerText = '1';
+                n1.classList.remove('spin-anim'); n2.classList.remove('spin-anim');
+                document.getElementById('age-text').style.display = 'block';
+                document.getElementById('spin-btn').style.display = 'none';
+                document.getElementById('next2-btn').style.display = 'inline-block';
+                confetti({ particleCount: 60, spread: 70 });
+            }, 800);
+        }
+
+        const compliments = ["Beautiful 💖", "Kind 🌸", "Smart ✨", "Pretty 👑"];
+        function startBalloons() {
+            const container = document.getElementById('balloon-container');
+            container.innerHTML = '';
+            const colors = ['#ff7675', '#fd79a8', '#ffeaa7', '#74b9ff'];
+
+            for(let i=0; i<4; i++) {
+                let b = document.createElement('div');
+                b.className = 'flying-balloon';
+                b.style.backgroundColor = colors[i];
+                b.style.left = (i * 22 + 8) + '%';
+                b.style.animationDelay = (i * 0.9) + 's';
+                b.onclick = function() {
+                    this.remove();
+                    let tag = document.createElement('span');
+                    tag.className = 'compliment-tag';
+                    tag.innerText = compliments[i];
+                    document.getElementById('tags-area').appendChild(tag);
+                    confetti({ particleCount: 20, spread: 40 });
+                };
+                container.appendChild(b);
+            }
+        }
+
+        let blownCount = 0;
+        function blowCandle(flameElement) {
+            if(!flameElement.classList.contains('off')) {
+                let smoke = document.createElement('div');
+                smoke.className = 'smoke';
+                flameElement.parentElement.appendChild(smoke);
+                flameElement.classList.add('off');
+                blownCount++;
+
+                setTimeout(() => { smoke.remove(); }, 1200);
+
+                if(blownCount === 4) {
+                    confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+                    setTimeout(() => {
+                        document.getElementById('cake-box').style.display = 'none';
+                        document.getElementById('cutting-section').style.display = 'block';
+                        document.getElementById('cake-instruction').innerText = "Now tap to cut your cake!";
+                    }, 800);
+                }
+            }
+        }
+
+        let isSliced = false;
+        function cutCakeSlice() {
+            if(isSliced) return;
+            isSliced = true;
+
+            let knife = document.getElementById('knife-el');
+            knife.style.transform = 'translate(-20px, 30px) rotate(-30deg)';
+
+            setTimeout(() => {
+                document.getElementById('left-cake').style.transform = 'translateX(-30px) rotate(-6deg)';
+                document.getElementById('right-cake').style.transform = 'translateX(30px) rotate(6deg)';
+                knife.style.opacity = '0';
+                confetti({ particleCount: 180, spread: 90, origin: { y: 0.6 } });
+            }, 400);
+
+            setTimeout(() => {
+                document.getElementById('cutting-section').style.display = 'none';
+                document.getElementById('cake-instruction').style.display = 'none';
+                document.getElementById('wish-success').style.display = 'block';
+            }, 1200);
+        }
+
+        function openGift() {
+            confetti({ particleCount: 200, spread: 100 });
+            document.getElementById('final-message').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
