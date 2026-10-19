@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 21st Birthday, Cutiepie! 🎂✨</title>
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #090a0f, #111528, #1b203e);
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Night Sky Galaxy Effect */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+                        radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
+                        radial-gradient(1px 1px at 90px 40px, #fff, rgba(0,0,0,0)),
+                        radial-gradient(2px 2px at 160px 120px, #ddd, rgba(0,0,0,0));
+            background-size: 200px 200px;
+            animation: twinkle 4s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        /* Bottom Luxury Balloons Decor */
+        .bottom-decor {
+            position: fixed;
+            bottom: -10px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .bottom-balloon {
+            width: 50px;
+            height: 65px;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            background: radial-gradient(circle at 30% 30%, #ffd700, #b8860b);
+            box-shadow: inset -5px -5px 10px rgba(0,0,0,0.5);
+            animation: floatSlow 3s ease-in-out infinite alternate;
+        }
+
+        .bottom-balloon:nth-child(even) {
+            background: radial-gradient(circle at 30% 30%, #333, #000);
+        }
+
+        @keyframes floatSlow {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+
+        /* Card Container */
+        .card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 30px;
+            padding: 30px 25px;
+            width: 90%;
+            max-width: 420px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 5;
+            display: none;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .card.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Cutie Animated Cat Sticker */
+        .cat-sticker {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 15px;
+            background: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdW5pbmEwaWRyc2I4bm9xZzhmdnA3enp5M3JreG9scG9mYzMzaGN1eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/C9x8gX02fJ3UU407J4/giphy.gif') center/contain no-repeat;
+            animation: bounceCat 2s infinite ease-in-out;
+        }
+
+        .cat-party {
+            background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHc3ZnZ5eW8xbjFkZmJ4OHRtczVxbDk5NG9zZjI1dnpnYXVsaGlweCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Kxsc0vO1I7vO3O26nZ/giphy.gif');
+        }
+
+        @keyframes bounceCat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(3deg); }
+        }
+
+        h1, h2 {
+            font-family: 'Dancing Script', cursive;
+            color: #ffeaa7;
+            font-size: 2.3rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 0.95rem;
+            color: #dcdde1;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #ff7675, #e84393);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(232, 67, 147, 0.4);
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3deg) scale(1.03);
+        }
+
+        /* Age Slot Machine Screen */
+        .number-box-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .number-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            width: 75px;
+            height: 95px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffd700;
+            box-shadow: inset 0 0 10px rgba(255,215,0,0.3);
+        }
+
+        .spin-anim {
+            animation: spinNumber 0.8s ease-in-out;
+        }
+
+        @keyframes spinNumber {
+            0% { transform: rotateX(0deg); opacity: 0.2; }
+            50% { transform: rotateX(180deg); }
+            100% { transform: rotateX(360deg); opacity: 1; }
+        }
+
+        /* Pop Balloons Screen */
+        .balloon-area {
+            height: 200px;
+            position: relative;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .real-balloon {
+            width: 55px;
+            height: 70px;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            position: absolute;
+            bottom: -80px;
+            cursor: pointer;
+            animation: floatUp 5s infinite ease-in;
+            box-shadow: inset -6px -6px 12px rgba(0,0,0,0.3);
+        }
+
+        .real-balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 24px;
+            width: 2px;
+            height: 12px;
+            background: rgba(255,255,255,0.5);
+        }
+
+        @keyframes floatUp {
+            0% { bottom: -80px; opacity: 1; }
+            100% { bottom: 220px; opacity: 0.9; }
+        }
+
+        .compliment-tag {
+            background: rgba(255,215,0,0.2);
+            border: 1px solid #ffd700;
+            padding: 5px 12px;
+            border-radius: 15px;
+            display: inline-block;
+            margin: 4px;
+            font-size: 0.85rem;
+            animation: fadeIn 0.4s ease;
+        }
+
+        /* Cake & Fixed Candles */
+        .cake-container {
+            position: relative;
+            margin: 30px auto 10px;
+            width: 180px;
+        }
+
+        .cake-base {
+            width: 180px;
+            height: 75px;
+            background: #ffb6c1;
+            border-radius: 15px 15px 10px 10px;
+            position: relative;
+            box-shadow: inset 0 8px 0 #ff69b4, 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .candles-group {
+            display: flex;
+            justify-content: space-around;
+            width: 120px;
+            position: absolute;
+            top: -28px;
+            left: 30px;
+        }
+
+        .candle {
+            width: 10px;
+            height: 30px;
+            background: repeating-linear-gradient(45deg, #fff, #fff 5px, #ff4757 5px, #ff4757 10px);
+            border-radius: 3px;
+            position: relative;
+        }
+
+        .flame {
+            width: 12px;
+            height: 18px;
+            background: radial-gradient(circle, #fffa75, #ff7675);
+            border-radius: 50% 50% 20% 20%;
+            position: absolute;
+            top: -18px;
+            left: -1px;
+            cursor: pointer;
+            box-shadow: 0 0 10px #fffa75;
+            animation: flicker 0.6s infinite alternate;
+        }
+
+        .flame.off {
+            display: none;
+        }
+
+        @keyframes flicker {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.15); }
+        }
+
+        /* Letter Box */
+        .letter-content {
+            text-align: left;
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            max-height: 180px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+            border: 1px ease rgba(255,255,255,0.1);
+        }
+
+        /* Final Gift */
+        .gift-box-icon {
+            font-size: 80px;
+            cursor: pointer;
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stars"></div>
+
+    <div class="bottom-decor">
+        <div class="bottom-balloon"></div>
+        <div class="bottom-balloon"></div>
+        <div class="bottom-balloon"></div>
+        <div class="bottom-balloon"></div>
+        <div class="bottom-balloon"></div>
+    </div>
+
+    <!-- Screen 1: Welcome -->
+    <div class="card active" id="step1">
+        <div class="cat-sticker"></div>
+        <h1>Hello, Cutiepie!</h1>
+        <p>Today is your special day! But wait... this place is missing a little magic...</p>
+        <button class="btn" onclick="nextStep(2)">✨ Let's Decorate</button>
+    </div>
+
+    <!-- Screen 2: Age Slot Machine (21 Years) -->
+    <div class="card" id="step2">
+        <div class="cat-sticker"></div>
+        <h2>A Special Number</h2>
+        <p>Let's see how many wonderful years you've collected...</p>
+        <div class="number-box-container">
+            <div class="number-box" id="num1">0</div>
+            <div class="number-box" id="num2">0</div>
+        </div>
+        <p id="age-text" style="display:none; color:#ffd700; font-weight:bold;">21 years of smiles, memories, and beautiful moments ❤️</p>
+        <button class="btn" id="spin-btn" onclick="spinAge()">Spin to Reveal</button>
+        <button class="btn" id="next2-btn" style="display:none;" onclick="nextStep(3)">Continue ➔</button>
+    </div>
+
+    <!-- Screen 3: Pop the Balloons -->
+    <div class="card" id="step3">
+        <h2>Pop the Balloons</h2>
+        <p>Tap the floating balloons to see what I think of you ❤️</p>
+        <div class="balloon-area" id="balloon-container"></div>
+        <div id="tags-area"></div>
+        <br>
+        <button class="btn" onclick="nextStep(4)">Make a Wish 🎂</button>
+    </div>
+
+    <!-- Screen 4: Cake & Blow Candles -->
+    <div class="card" id="step4">
+        <h2>Make a Wish!</h2>
+        <p>Tap each candle flame to blow it out.</p>
+        <div class="cake-container">
+            <div class="candles-group">
+                <div class="candle"><div class="flame" onclick="blowCandle(this)"></div></div>
+                <div class="candle"><div class="flame" onclick="blowCandle(this)"></div></div>
+                <div class="candle"><div class="flame" onclick="blowCandle(this)"></div></div>
+                <div class="candle"><div class="flame" onclick="blowCandle(this)"></div></div>
+            </div>
+            <div class="cake-base"></div>
+        </div>
+        <div id="wish-success" style="display:none; margin-top:20px;">
+            <div class="cat-sticker cat-party"></div>
+            <h2 style="font-size:1.8rem;">Yay! Happy Birthday, Cutiepie! 🎉</h2>
+            <button class="btn" onclick="nextStep(5)">Open Your Letter ✉️</button>
+        </div>
+    </div>
+
+    <!-- Screen 5: Special Birthday Letter -->
+    <div class="card" id="step5">
+        <div class="cat-sticker cat-party"></div>
+        <h2>My Dear Cutiepie</h2>
+        <div class="letter-content">
+            <p>Today is a beautiful reminder of how lucky I am to have someone as amazing as you in my life.</p>
+            <p>You bring so much happiness, warmth, and positivity just by being yourself.</p>
+            <p>No matter where life takes us, I will always cherish our moments together. Stay happy and keep smiling always!</p>
+        </div>
+        <button class="btn" onclick="nextStep(6)">One Last Thing ➔</button>
+    </div>
+
+    <!-- Screen 6: Final Gift Box -->
+    <div class="card" id="step6">
+        <h2>One Last Thing For You...</h2>
+        <p>Tap the gift to open your final surprise!</p>
+        <div class="gift-box-icon" onclick="openGift()">🎁</div>
+        <div id="final-message" style="display:none; margin-top:15px;">
+            <h1 style="color:#ffd700;">Have the Best Birthday Ever! ❤️✨</h1>
+            <p>May all your dreams come true!</p>
+        </div>
+    </div>
+
+    <script>
+        function nextStep(stepNumber) {
+            document.querySelectorAll('.card').forEach(card => card.classList.remove('active'));
+            document.getElementById('step' + stepNumber).classList.add('active');
+            if(stepNumber === 3) startBalloons();
+        }
+
+        /* Age Spin Logic (21) */
+        function spinAge() {
+            let n1 = document.getElementById('num1');
+            let n2 = document.getElementById('num2');
+            n1.classList.add('spin-anim');
+            n2.classList.add('spin-anim');
+
+            setTimeout(() => {
+                n1.innerText = '2';
+                n2.innerText = '1';
+                n1.classList.remove('spin-anim');
+                n2.classList.remove('spin-anim');
+                document.getElementById('age-text').style.display = 'block';
+                document.getElementById('spin-btn').style.display = 'none';
+                document.getElementById('next2-btn').style.display = 'inline-block';
+                confetti({ particleCount: 50, spread: 60 });
+            }, 800);
+        }
+
+        /* Balloons Logic */
+        const compliments = ["Beautiful 💖", "Kind 🌸", "Smart ✨", "Pretty 👑", "Caring 🌟"];
+        function startBalloons() {
+            const container = document.getElementById('balloon-container');
+            container.innerHTML = '';
+            const colors = ['#ff7675', '#fd79a8', '#ffeaa7', '#74b9ff', '#a29bfe'];
+
+            for(let i=0; i<5; i++) {
+                let b = document.createElement('div');
+                b.className = 'real-balloon';
+                b.style.backgroundColor = colors[i];
+                b.style.left = (i * 20 + 5) + '%';
+                b.style.animationDelay = (i * 0.7) + 's';
+                b.onclick = function() {
+                    this.remove();
+                    let tag = document.createElement('span');
+                    tag.className = 'compliment-tag';
+                    tag.innerText = compliments[i];
+                    document.getElementById('tags-area').appendChild(tag);
+                    confetti({ particleCount: 20, spread: 40 });
+                };
+                container.appendChild(b);
+            }
+        }
+
+        /* Blow Candles Logic */
+        let blownCount = 0;
+        function blowCandle(flameElement) {
+            if(!flameElement.classList.contains('off')) {
+                flameElement.classList.add('off');
+                blownCount++;
+                if(blownCount === 4) {
+                    confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
+                    document.getElementById('wish-success').style.display = 'block';
+                }
+            }
+        }
+
+        /* Final Gift Logic */
+        function openGift() {
+            confetti({ particleCount: 200, spread: 100 });
+            document.getElementById('final-message').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
