@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A surprise for Roja! 💖</title>
+    <title>Happy 21st Birthday, Roja! 🎂✨</title>
     <!-- Canvas Confetti Library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
@@ -27,7 +27,7 @@
             position: relative;
         }
 
-        /* Galaxy Background */
+        /* Galaxy Stars Background */
         .stars {
             position: absolute;
             top: 0;
@@ -37,9 +37,10 @@
             pointer-events: none;
             background: radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
                         radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0));
-            background-size: 150px 150px;
+            background-size: 200px 200px;
         }
 
+        /* Card Container */
         .card {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(16px);
@@ -53,7 +54,7 @@
             position: relative;
             z-index: 5;
             display: none;
-            animation: fadeIn 0.8s ease-out forwards;
+            animation: fadeIn 0.6s ease-out forwards;
         }
 
         .card.active {
@@ -61,7 +62,7 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.92); }
+            from { opacity: 0; transform: scale(0.95); }
             to { opacity: 1; transform: scale(1); }
         }
 
@@ -90,24 +91,19 @@
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(232, 67, 147, 0.4);
             transition: 0.3s;
-            margin-top: 15px;
+            margin-top: 10px;
         }
 
         .btn:hover {
             transform: translateY(-3px) scale(1.03);
         }
 
-        /* Step 1: Bow & Arrow / Heart Pull Mechanism */
-        .pull-area {
-            margin: 20px 0;
+        /* Step 1: Heart Entry */
+        .heart-box {
+            font-size: 75px;
             cursor: pointer;
-            position: relative;
-            padding: 20px;
-        }
-
-        .heart-target {
-            font-size: 70px;
             animation: pulseHeart 1.2s infinite alternate;
+            margin: 20px 0;
             display: inline-block;
         }
 
@@ -116,28 +112,7 @@
             100% { transform: scale(1.15); }
         }
 
-        /* Step 2: Birthday Tree Animation */
-        .tree-container {
-            margin: 15px auto;
-            position: relative;
-            height: 180px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .tree-graphic {
-            font-size: 90px;
-            animation: growTree 1s ease-out forwards;
-        }
-
-        @keyframes growTree {
-            0% { transform: scale(0); opacity: 0; }
-            80% { transform: scale(1.1); }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        /* Step 3: Balloons */
+        /* Step 2: Balloons */
         .balloon-area {
             height: 180px;
             position: relative;
@@ -171,7 +146,7 @@
             font-size: 0.8rem;
         }
 
-        /* Step 4: Cake */
+        /* Step 3: Cake */
         .cake-container {
             position: relative;
             margin: 25px auto 10px;
@@ -220,7 +195,7 @@
             display: none;
         }
 
-        /* Step 5: Letter */
+        /* Step 4: Letter */
         .letter-content {
             text-align: left;
             background: rgba(0,0,0,0.3);
@@ -255,24 +230,20 @@
 
     <div class="stars"></div>
 
-    <!-- Step 1: Bow & Arrow / Heart Pull Entry -->
+    <!-- Step 1: Entry -->
     <div class="card active" id="step1">
-        <p style="color: #ffd700; font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">A little something for you</p>
-        <div class="pull-area" onclick="nextStep(2)">
-            <div class="heart-target">🎯💖</div>
-            <p style="margin-top: 10px; font-size: 0.85rem; color: #ff9a9e;">Pull & Release to Open</p>
-        </div>
+        <div class="heart-box" onclick="nextStep(2)">❤️</div>
+        <h1>Happy 21st Birthday, Roja!</h1>
+        <p>Tap the heart to open your special surprise.</p>
     </div>
 
-    <!-- Step 2: Birthday Tree Screen -->
+    <!-- Step 2: Pop Balloons -->
     <div class="card" id="step2">
-        <h2>It's officially your day</h2>
-        <div class="tree-container">
-            <div class="tree-graphic">🌳✨</div>
-        </div>
-        <h1>Happy Birthday, Roja!</h1>
-        <p>And just like that, you're turning 21...</p>
-        <button class="btn" onclick="nextStep(3)">First things first ➔</button>
+        <h2>Pop the Balloons 🎈</h2>
+        <p style="font-size: 0.85rem;">Pop all 5 balloons to uncover sweet notes!</p>
+        <div class="balloon-area" id="balloon-container"></div>
+        <div id="tags-area"></div>
+        <button class="btn" id="balloon-next-btn" style="display:none;" onclick="nextStep(3)">Make a Wish 🎂</button>
     </div>
 
     <!-- Step 3: Cake & Candles -->
@@ -290,32 +261,23 @@
         </div>
         <div id="wish-success" style="display:none; margin-top:15px;">
             <p style="color:#ffd700; font-weight:bold;">Make a wish! All candles blown.</p>
-            <button class="btn" onclick="nextStep(4)">Pop the balloons 🎈</button>
+            <button class="btn" onclick="nextStep(4)">Open your letter ➔</button>
         </div>
     </div>
 
-    <!-- Step 4: Balloon Pop Screen -->
+    <!-- Step 4: Letter -->
     <div class="card" id="step4">
-        <h2>Pop the balloons 🎈</h2>
-        <p style="font-size: 0.85rem;">Pop all 5 balloons to uncover sweet notes!</p>
-        <div class="balloon-area" id="balloon-container"></div>
-        <div id="tags-area"></div>
-        <button class="btn" id="balloon-next-btn" style="display:none;" onclick="nextStep(5)">Open your letter ➔</button>
-    </div>
-
-    <!-- Step 5: Typewriter Letter -->
-    <div class="card" id="step5">
-        <h2>One last thing, Roja... 💌</h2>
+        <h2>Dear Roja 💌</h2>
         <div class="letter-content" id="typed-letter"></div>
-        <button class="btn" id="letter-btn" style="display:none;" onclick="nextStep(6)">Final Surprise ➔</button>
+        <button class="btn" id="letter-btn" style="display:none;" onclick="nextStep(5)">Final Surprise ➔</button>
     </div>
 
-    <!-- Step 6: Final Gift Box / Cat Screen -->
-    <div class="card" id="step6">
+    <!-- Step 5: Final Screen -->
+    <div class="card" id="step5">
         <img class="cat-sticker-img" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHc3ZnZ5eW8xbjFkZmJ4OHRtczVxbDk5NG9zZjI1dnpnYXVsaGlweCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Kxsc0vO1I7vO3O26nZ/giphy.gif" alt="Cat">
         <h2>HAPPY BIRTHDAY</h2>
         <h1 style="color:#ffd700;">Roja! ✨</h1>
-        <p>Made with love, just for you.</p>
+        <p>Made with love, just for you. Have the best 21st birthday ever!</p>
     </div>
 
     <script>
@@ -323,24 +285,11 @@
             document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
             document.getElementById('step' + step).classList.add('active');
             
-            if(step === 4) startBalloons();
-            if(step === 5) startTypewriter();
+            if(step === 2) startBalloons();
+            if(step === 4) startTypewriter();
         }
 
-        /* Candles Logic */
-        let blownCount = 0;
-        function blowCandle(el) {
-            if(!el.classList.contains('off')) {
-                el.classList.add('off');
-                blownCount++;
-                if(blownCount === 4) {
-                    if(typeof confetti === 'function') confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
-                    document.getElementById('wish-success').style.display = 'block';
-                }
-            }
-        }
-
-        /* Balloon Pop Logic */
+        /* Balloons Logic */
         function startBalloons() {
             const container = document.getElementById('balloon-container');
             container.innerHTML = '';
@@ -378,7 +327,20 @@
             }
         }
 
-        /* Typewriter Letter Logic */
+        /* Candles Logic */
+        let blownCount = 0;
+        function blowCandle(el) {
+            if(!el.classList.contains('off')) {
+                el.classList.add('off');
+                blownCount++;
+                if(blownCount === 4) {
+                    if(typeof confetti === 'function') confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+                    document.getElementById('wish-success').style.display = 'block';
+                }
+            }
+        }
+
+        /* Typewriter Logic */
         const letterText = "Dear Roja,\n\nEvery year, I try to find the perfect words, and every year, I fall short. Here is to the honest version: You make my most ordinary days feel worth remembering.\n\nHappy 21st birthday, my favourite person!\n\n- Siam";
 
         function startTypewriter() {
