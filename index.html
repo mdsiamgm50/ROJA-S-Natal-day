@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy 21st Birthday, Roja! 🎂✨</title>
+    <title>A surprise for Roja! 💖</title>
     <!-- Canvas Confetti Library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
@@ -74,21 +74,6 @@
             to { opacity: 1; transform: scale(1); }
         }
 
-        /* Animated Cute Cat Sticker */
-        .cat-sticker-img {
-            width: 110px;
-            height: 110px;
-            margin: 0 auto 15px;
-            object-fit: contain;
-            display: block;
-            animation: bounceCat 2s infinite ease-in-out;
-        }
-
-        @keyframes bounceCat {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(3deg); }
-        }
-
         h1, h2 {
             font-family: 'Dancing Script', cursive;
             color: #ffeaa7;
@@ -120,89 +105,52 @@
             transform: translateY(-3deg) scale(1.03);
         }
 
-        /* Step 1: Interactive Heart Pull */
-        .heart-box {
-            font-size: 70px;
-            cursor: pointer;
-            animation: pulseHeart 1.2s infinite alternate;
-            margin: 20px 0;
-            display: inline-block;
-        }
-
-        @keyframes pulseHeart {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.15); }
-        }
-
-        /* Step 2: Milestone Slot Machine */
-        .number-box-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .number-box {
-            background: rgba(0, 0, 0, 0.4);
-            border: 2px solid #ffd700;
-            border-radius: 15px;
-            width: 75px;
-            height: 95px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 3rem;
-            font-weight: bold;
-            color: #ffd700;
-            box-shadow: inset 0 0 10px rgba(255,215,0,0.3);
-        }
-
-        .spin-anim {
-            animation: spinNumber 0.8s ease-in-out;
-        }
-
-        @keyframes spinNumber {
-            0% { transform: rotateX(0deg); opacity: 0.2; }
-            50% { transform: rotateX(180deg); }
-            100% { transform: rotateX(360deg); opacity: 1; }
-        }
-
-        /* Step 3: Balloon Pop Screen */
-        .balloon-area {
-            height: 200px;
+        /* Video Style Interactive Heart Pull Screen (Step 1) */
+        .pull-container {
+            margin: 25px 0;
             position: relative;
-            margin: 15px 0;
-            overflow: hidden;
+            height: 140px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
-        .real-balloon {
-            width: 50px;
-            height: 65px;
-            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
-            position: absolute;
-            bottom: -80px;
+        .pulsing-heart {
+            font-size: 65px;
+            color: #ff4757;
             cursor: pointer;
-            animation: floatUp 5s infinite ease-in;
-            box-shadow: inset -5px -5px 10px rgba(0,0,0,0.3);
+            animation: heartBeat 1.2s infinite alternate;
+            filter: drop-shadow(0 0 15px rgba(255, 71, 87, 0.6));
         }
 
-        @keyframes floatUp {
-            0% { bottom: -80px; opacity: 1; }
-            100% { bottom: 220px; opacity: 0.9; }
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.2); }
         }
 
-        .compliment-tag {
-            background: rgba(255,215,0,0.2);
-            border: 1px solid #ffd700;
-            padding: 5px 12px;
-            border-radius: 15px;
-            display: inline-block;
-            margin: 4px;
+        .pull-text {
             font-size: 0.85rem;
-            animation: fadeIn 0.4s ease;
+            color: #ffd700;
+            margin-top: 15px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
         }
 
-        /* Step 4: Cake & Candles */
+        /* Step 2: Birthday Tree & Intro */
+        .tree-icon {
+            font-size: 60px;
+            margin-bottom: 10px;
+            animation: floatSlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatSlow {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-8px); }
+        }
+
+        /* Step 3: Cake & Candles */
         .cake-container {
             position: relative;
             margin: 30px auto 10px;
@@ -257,15 +205,63 @@
             100% { transform: scale(1.15); }
         }
 
-        /* Step 5: Typewriter Letter Box */
+        /* Step 4: Balloon Pop Screen */
+        .balloon-area {
+            height: 190px;
+            position: relative;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        .real-balloon {
+            width: 48px;
+            height: 62px;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            position: absolute;
+            bottom: -80px;
+            cursor: pointer;
+            animation: floatUp 4.5s infinite ease-in;
+            box-shadow: inset -5px -5px 10px rgba(0,0,0,0.3);
+        }
+
+        @keyframes floatUp {
+            0% { bottom: -80px; opacity: 1; }
+            100% { bottom: 210px; opacity: 0.9; }
+        }
+
+        .compliment-tag {
+            background: rgba(255,215,0,0.2);
+            border: 1px solid #ffd700;
+            padding: 5px 10px;
+            border-radius: 12px;
+            display: inline-block;
+            margin: 3px;
+            font-size: 0.8rem;
+            animation: fadeIn 0.4s ease;
+        }
+
+        /* Step 5: Envelope & Letter Box */
+        .envelope-icon {
+            font-size: 75px;
+            cursor: pointer;
+            margin: 15px 0;
+            animation: bounce 1.5s infinite;
+            display: inline-block;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
         .letter-content {
             text-align: left;
             background: rgba(0,0,0,0.25);
-            padding: 18px;
-            border-radius: 18px;
-            font-size: 0.9rem;
-            min-height: 150px;
-            max-height: 200px;
+            padding: 16px;
+            border-radius: 16px;
+            font-size: 0.88rem;
+            min-height: 140px;
+            max-height: 190px;
             overflow-y: auto;
             margin-bottom: 15px;
             border: 1px solid rgba(255,255,255,0.15);
@@ -273,17 +269,19 @@
             line-height: 1.6;
         }
 
-        /* Step 6: Final Gift Box */
-        .gift-box-icon {
-            font-size: 85px;
-            cursor: pointer;
-            animation: bounce 1.5s infinite;
-            display: inline-block;
+        /* Cute Sticker Animation */
+        .cat-sticker-img {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 15px;
+            object-fit: contain;
+            display: block;
+            animation: bounceCat 2s infinite ease-in-out;
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+        @keyframes bounceCat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(3deg); }
         }
     </style>
 </head>
@@ -291,41 +289,28 @@
 
     <div class="stars"></div>
 
-    <!-- Step 1: Entry Screen (Heart Touch) -->
+    <!-- Step 1: Video Style Heart Pull / Tap Entry -->
     <div class="card active" id="step1">
-        <div class="heart-box" onclick="nextStep(2)">❤️</div>
-        <h1>A Little Something For You</h1>
-        <p>Tap the heart to open your birthday surprise, Roja!</p>
-    </div>
-
-    <!-- Step 2: Age Milestone -->
-    <div class="card" id="step2">
-        <img class="cat-sticker-img" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z2dG5xZ3gxeW5ycWpxYTZmYm54MDFid25zcHFndWV2MGk3bmF0cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/C9x8gX02fJ3UU407J4/giphy.gif" alt="Cute Cat">
-        <h2>It's Officially Your Day!</h2>
-        <p>Let's see your special milestone...</p>
-        <div class="number-box-container">
-            <div class="number-box" id="num1">0</div>
-            <div class="number-box" id="num2">0</div>
+        <p style="letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem; color: #ffd700;">A little something, for you</p>
+        <div class="pull-container" onclick="nextStep(2)">
+            <div class="pulsing-heart">💖</div>
+            <div class="pull-text">Tap & Release</div>
         </div>
-        <p id="age-text" style="display:none; color:#ffd700; font-weight:bold;">And just like that, you're turning 21!</p>
-        <button class="btn" id="spin-btn" onclick="spinAge()">Reveal Age</button>
-        <button class="btn" id="next2-btn" style="display:none;" onclick="nextStep(3)">Continue ➔</button>
     </div>
 
-    <!-- Step 3: Pop the Balloons -->
+    <!-- Step 2: Birthday Tree Intro -->
+    <div class="card" id="step2">
+        <div class="tree-icon">🌳</div>
+        <h2>It's officially your day</h2>
+        <h1>Happy Birthday, Roja!</h1>
+        <p>And just like that, you're turning 21...</p>
+        <button class="btn" onclick="nextStep(3)">First things first ➔</button>
+    </div>
+
+    <!-- Step 3: Cake & Candles -->
     <div class="card" id="step3">
-        <h2>Pop the Balloons 🎈</h2>
-        <p>Pop each balloon to uncover sweet notes!</p>
-        <div class="balloon-area" id="balloon-container"></div>
-        <div id="tags-area"></div>
-        <br>
-        <button class="btn" onclick="nextStep(4)">Make a Wish 🎂</button>
-    </div>
-
-    <!-- Step 4: Cake & Candles -->
-    <div class="card" id="step4">
-        <h2>Baking Something Sweet... 🎂</h2>
-        <p>Tap each candle flame to blow it out.</p>
+        <h2>Baking something sweet... 🎂</h2>
+        <p>Tap each candle flame to blow them out.</p>
         <div class="cake-container">
             <div class="candles-group">
                 <div class="candle"><div class="flame" onclick="blowCandle(this)"></div></div>
@@ -336,23 +321,38 @@
             <div class="cake-base"></div>
         </div>
         <div id="wish-success" style="display:none; margin-top:20px;">
-            <h2 style="font-size:1.8rem; color:#ffd700;">Happy Birthday, Roja! 🎉</h2>
-            <button class="btn" onclick="nextStep(5)">Open Your Letter ✉️</button>
+            <p style="color:#ffd700; font-weight:bold;">Make a wish! All candles blown.</p>
+            <button class="btn" onclick="nextStep(4)">Pop the balloons 🎈</button>
         </div>
     </div>
 
-    <!-- Step 5: Typewriter Letter -->
-    <div class="card" id="step5">
-        <h2>Dear Roja 💌</h2>
-        <div class="letter-content" id="typed-letter"></div>
-        <button class="btn" id="letter-btn" style="display:none;" onclick="nextStep(6)">Final Surprise ➔</button>
+    <!-- Step 4: Balloon Pop Screen -->
+    <div class="card" id="step4">
+        <h2>Pop the balloons 🎈</h2>
+        <p style="font-size: 0.85rem;">5 balloons. Each one holds a reason you're loved. Pop them all!</p>
+        <div class="balloon-area" id="balloon-container"></div>
+        <div id="tags-area"></div>
+        <br>
+        <button class="btn" id="balloon-next-btn" style="display:none;" onclick="nextStep(5)">One last thing ➔</button>
     </div>
 
-    <!-- Step 6: Final Gift Box -->
+    <!-- Step 5: Envelope & Typewriter Letter -->
+    <div class="card" id="step5">
+        <h2>One last thing, Roja...</h2>
+        <p>Without, you'd miss the secret note.</p>
+        <div class="envelope-icon" onclick="openEnvelope()">💌</div>
+        <div id="letter-box-container" style="display:none;">
+            <div class="letter-content" id="typed-letter"></div>
+            <button class="btn" onclick="nextStep(6)">Continue ➔</button>
+        </div>
+    </div>
+
+    <!-- Step 6: Final Celebration Screen -->
     <div class="card" id="step6">
         <img class="cat-sticker-img" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHc3ZnZ5eW8xbjFkZmJ4OHRtczVxbDk5NG9zZjI1dnpnYXVsaGlweCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Kxsc0vO1I7vO3O26nZ/giphy.gif" alt="Party Cat">
-        <h2>Happy Birthday, Roja! ❤️✨</h2>
-        <p>Made with love, just for you. May your 21st year be filled with endless magic and happiness!</p>
+        <h2>HAPPY BIRTHDAY</h2>
+        <h1 style="color:#ffd700;">Roja! ✨</h1>
+        <p>Made with love, just for you — yours truly.</p>
     </div>
 
     <script>
@@ -360,52 +360,7 @@
             document.querySelectorAll('.card').forEach(card => card.classList.remove('active'));
             document.getElementById('step' + stepNumber).classList.add('active');
             
-            if(stepNumber === 3) startBalloons();
-            if(stepNumber === 5) startTypewriter();
-        }
-
-        /* Age Spin Logic */
-        function spinAge() {
-            let n1 = document.getElementById('num1');
-            let n2 = document.getElementById('num2');
-            n1.classList.add('spin-anim');
-            n2.classList.add('spin-anim');
-
-            setTimeout(() => {
-                n1.innerText = '2';
-                n2.innerText = '1';
-                n1.classList.remove('spin-anim');
-                n2.classList.remove('spin-anim');
-                document.getElementById('age-text').style.display = 'block';
-                document.getElementById('spin-btn').style.display = 'none';
-                document.getElementById('next2-btn').style.display = 'inline-block';
-                confetti({ particleCount: 70, spread: 80 });
-            }, 800);
-        }
-
-        /* Balloon Pop Logic */
-        const compliments = ["You make ordinary days feel special ✨", "My worst days get shorter when you call 💖", "You believed in me when I didn't 🌸", "Your laugh is my favourite sound 👑", "The world is kinder with you in it 🌟"];
-        function startBalloons() {
-            const container = document.getElementById('balloon-container');
-            container.innerHTML = '';
-            const colors = ['#ff7675', '#fd79a8', '#ffeaa7', '#74b9ff', '#a29bfe'];
-
-            for(let i=0; i<5; i++) {
-                let b = document.createElement('div');
-                b.className = 'real-balloon';
-                b.style.backgroundColor = colors[i];
-                b.style.left = (i * 18 + 8) + '%';
-                b.style.animationDelay = (i * 0.6) + 's';
-                b.onclick = function() {
-                    this.remove();
-                    let tag = document.createElement('div');
-                    tag.className = 'compliment-tag';
-                    tag.innerText = compliments[i];
-                    document.getElementById('tags-area').appendChild(tag);
-                    confetti({ particleCount: 25, spread: 50 });
-                };
-                container.appendChild(b);
-            }
+            if(stepNumber === 4) startBalloons();
         }
 
         /* Candles Logic */
@@ -421,10 +376,55 @@
             }
         }
 
-        /* Typewriter Letter Effect */
-        const letterText = "Dear Roja,\n\nEvery year, I try to find the perfect words, and every year, I fall short. Here is to the honest version: You make my most ordinary days feel worth remembering.\n\nHappy birthday, my favourite person!\n\nWith all my love, - Siam";
-        
-        function startTypewriter() {
+        /* Balloon Pop Logic */
+        const compliments = [
+            "You make ordinary days feel special ✨",
+            "My worst days get shorter when you call 💖",
+            "You believed in me when I didn't 🌸",
+            "Your laugh is my favourite sound 👑",
+            "The world is kinder with you in it 🌟"
+        ];
+        let poppedBalloons = 0;
+
+        function startBalloons() {
+            const container = document.getElementById('balloon-container');
+            container.innerHTML = '';
+            const colors = ['#ff7675', '#fd79a8', '#ffeaa7', '#74b9ff', '#a29bfe'];
+            poppedBalloons = 0;
+
+            for(let i=0; i<5; i++) {
+                let b = document.createElement('div');
+                b.className = 'real-balloon';
+                b.style.backgroundColor = colors[i];
+                b.style.left = (i * 18 + 8) + '%';
+                b.style.animationDelay = (i * 0.5) + 's';
+                
+                let compText = compliments[i];
+                b.onclick = function() {
+                    this.remove();
+                    let tag = document.createElement('div');
+                    tag.className = 'compliment-tag';
+                    tag.innerText = compText;
+                    document.getElementById('tags-area').appendChild(tag);
+                    confetti({ particleCount: 25, spread: 50 });
+                    
+                    poppedBalloons++;
+                    if(poppedBalloons === 5) {
+                        document.getElementById('balloon-next-btn').style.display = 'inline-block';
+                    }
+                };
+                container.appendChild(b);
+            }
+        }
+
+        /* Envelope & Typewriter Letter Logic */
+        const letterText = "Dear Roja,\n\nEvery year, I try to find the perfect words, and every year, I fall short. Here is to the honest version: You make my most ordinary days feel worth remembering.\n\nHappy 21st birthday, my favourite person!\n\n- Siam";
+
+        function openEnvelope() {
+            document.querySelector('.envelope-icon').style.display = 'none';
+            document.getElementById('letter-box-container').style.display = 'block';
+            confetti({ particleCount: 100, spread: 80 });
+
             const container = document.getElementById('typed-letter');
             container.innerText = '';
             let i = 0;
@@ -435,8 +435,6 @@
                     container.innerText += letterText.charAt(i);
                     i++;
                     setTimeout(type, speed);
-                } else {
-                    document.getElementById('letter-btn').style.display = 'inline-block';
                 }
             }
             type();
