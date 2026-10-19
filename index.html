@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy 21st Birthday Roja! 💖</title>
+    <title>Happy 21st Birthday, Roja! 🌸✨</title>
     <!-- Canvas Confetti Library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Sacramento&display=swap');
 
         * {
             box-sizing: border-box;
@@ -16,9 +16,9 @@
         }
 
         body {
-            background: linear-gradient(to bottom, #090a0f, #111528, #1b203e);
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
             color: #ffffff;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Quicksand', sans-serif;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -27,193 +27,244 @@
             position: relative;
         }
 
-        .stars {
+        /* Floating Sparkles Background */
+        .sparkles {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            background: radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
-                        radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0));
-            background-size: 150px 150px;
+            background-image: radial-gradient(#fff 1px, transparent 1px), radial-gradient(#ff758c 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: 0 0, 25px 25px;
+            opacity: 0.15;
         }
 
+        /* Main Glass Card */
         .card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            border-radius: 30px;
-            padding: 30px 25px;
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 35px;
+            padding: 35px 25px;
             width: 90%;
             max-width: 420px;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
             position: relative;
-            z-index: 5;
+            z-index: 10;
             display: none;
+            animation: cardAppear 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
         .card.active {
             display: block;
         }
 
-        h1, h2 {
-            font-family: 'Dancing Script', cursive;
-            color: #ffeaa7;
-            font-size: 2.3rem;
-            margin-bottom: 10px;
+        @keyframes cardAppear {
+            from { opacity: 0; transform: translateY(30px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        h1 {
+            font-family: 'Sacramento', cursive;
+            color: #ff9a9e;
+            font-size: 3.2rem;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 10px rgba(255, 154, 158, 0.3);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 15px;
+            font-weight: 600;
         }
 
         p {
             font-size: 0.95rem;
-            color: #dcdde1;
-            line-height: 1.5;
-            margin-bottom: 20px;
+            color: #e0e0e0;
+            line-height: 1.6;
+            margin-bottom: 25px;
         }
 
+        /* Cute Buttons */
         .btn {
-            background: linear-gradient(45deg, #ff7675, #e84393);
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
             color: white;
             border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
+            padding: 14px 32px;
+            border-radius: 30px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(232, 67, 147, 0.4);
-            transition: 0.3s;
-            margin-top: 10px;
+            box-shadow: 0 10px 20px rgba(255, 117, 140, 0.4);
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
         }
 
         .btn:hover {
-            transform: scale(1.05);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 25px rgba(255, 117, 140, 0.6);
         }
 
-        /* Step 1 */
-        .heart-box {
-            font-size: 75px;
+        /* Step 1: Interactive Floating Heart */
+        .heart-container {
+            margin: 30px 0;
             cursor: pointer;
-            animation: pulse 1.2s infinite alternate;
-            margin: 25px 0;
             display: inline-block;
+            animation: floatHeart 1.5s ease-in-out infinite alternate;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.2); }
+        .giant-heart {
+            font-size: 85px;
+            filter: drop-shadow(0 0 20px rgba(255, 71, 87, 0.6));
+            transition: transform 0.3s;
         }
 
-        /* Step 3: Balloons */
-        .balloon-area {
-            height: 180px;
-            position: relative;
-            margin: 10px 0;
-            overflow: hidden;
+        .giant-heart:hover {
+            transform: scale(1.15);
         }
 
-        .real-balloon {
-            width: 45px;
-            height: 60px;
-            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
-            position: absolute;
-            bottom: -70px;
-            cursor: pointer;
-            box-shadow: inset -5px -5px 10px rgba(0,0,0,0.3);
-            animation: floatUp 4s infinite ease-in;
+        @keyframes floatHeart {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-12px); }
         }
 
-        @keyframes floatUp {
-            0% { bottom: -70px; }
-            100% { bottom: 190px; }
+        /* Step 3: Balloon Mini Game */
+        .balloon-grid {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
         }
 
-        .compliment-tag {
-            background: rgba(255,215,0,0.2);
-            border: 1px solid #ffd700;
-            padding: 5px 10px;
-            border-radius: 12px;
-            display: inline-block;
-            margin: 3px;
-            font-size: 0.8rem;
-        }
-
-        /* Step 4: Cake */
-        .cake-container {
-            position: relative;
-            margin: 30px auto 10px;
-            width: 160px;
-        }
-
-        .cake-base {
-            width: 160px;
+        .cute-balloon {
+            width: 55px;
             height: 70px;
-            background: #ffb6c1;
-            border-radius: 15px 15px 10px 10px;
-            position: relative;
-            box-shadow: inset 0 8px 0 #ff69b4;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            box-shadow: inset -5px -5px 15px rgba(0,0,0,0.3);
+            animation: bounceBalloon 2s infinite ease-in-out;
+            transition: transform 0.3s, opacity 0.3s;
         }
 
-        .candles-group {
+        .cute-balloon:nth-child(even) { animation-delay: 0.5s; }
+
+        @keyframes bounceBalloon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .message-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            padding: 12px;
+            border-radius: 15px;
+            min-height: 55px;
+            font-size: 0.9rem;
+            color: #ffeaa7;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Step 4: Cake & Magic Candles */
+        .cake-wrapper {
+            position: relative;
+            margin: 35px auto 15px;
+            width: 170px;
+        }
+
+        .cake-body {
+            width: 170px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%);
+            border-radius: 20px 20px 10px 10px;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .candles-row {
             display: flex;
             justify-content: space-around;
-            width: 100px;
+            width: 110px;
             position: absolute;
-            top: -25px;
+            top: -32px;
             left: 30px;
         }
 
-        .candle {
-            width: 8px;
-            height: 25px;
-            background: #ff4757;
-            border-radius: 3px;
-            position: relative;
-        }
-
-        .flame {
+        .single-candle {
             width: 10px;
-            height: 15px;
-            background: #fffa75;
-            border-radius: 50%;
-            position: absolute;
-            top: -15px;
-            left: -1px;
-            cursor: pointer;
-            box-shadow: 0 0 8px #fffa75;
+            height: 35px;
+            background: #fff;
+            border-radius: 4px;
+            position: relative;
+            background-image: repeating-linear-gradient(45deg, #ff758c, #ff758c 6px, #fff 6px, #fff 12px);
         }
 
-        .flame.off {
+        .fire {
+            width: 14px;
+            height: 20px;
+            background: radial-gradient(circle, #ffe600, #ff5722);
+            border-radius: 50% 50% 20% 20%;
+            position: absolute;
+            top: -20px;
+            left: -2px;
+            cursor: pointer;
+            box-shadow: 0 0 12px #ffeb3b;
+            animation: flickerFire 0.5s infinite alternate;
+        }
+
+        .fire.extinguished {
             display: none;
         }
 
-        /* Step 5: Letter */
-        .envelope-icon {
-            font-size: 75px;
+        @keyframes flickerFire {
+            0% { transform: scale(1) rotate(-2deg); }
+            100% { transform: scale(1.1) rotate(2deg); }
+        }
+
+        /* Step 5: Letter Envelope */
+        .envelope {
+            font-size: 80px;
             cursor: pointer;
-            margin: 15px 0;
+            margin: 20px 0;
+            animation: pulseEnv 1.5s infinite;
             display: inline-block;
         }
 
-        .letter-content {
-            text-align: left;
-            background: rgba(0,0,0,0.3);
-            padding: 15px;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            min-height: 130px;
-            max-height: 170px;
-            overflow-y: auto;
-            margin-bottom: 15px;
-            border: 1px solid rgba(255,255,255,0.2);
-            line-height: 1.5;
-            color: #f1f2f6;
+        @keyframes pulseEnv {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
         }
 
-        .cat-sticker-img {
-            width: 90px;
-            height: 90px;
-            margin: 0 auto 10px;
+        .letter-paper {
+            text-align: left;
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            max-height: 190px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        /* Cute Cat GIF Container */
+        .cute-sticker {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 15px;
             object-fit: contain;
             display: block;
         }
@@ -221,145 +272,164 @@
 </head>
 <body>
 
-    <div class="stars"></div>
+    <div class="sparkles"></div>
 
-    <!-- Step 1 -->
+    <!-- STEP 1: Welcome Entry -->
     <div class="card active" id="step1">
-        <p style="color: #ffd700; font-weight: 600; text-transform: uppercase; font-size: 0.8rem;">A little something for you</p>
-        <div class="heart-box" onclick="nextStep(2)">💖</div>
-        <p>Tap the heart to open your surprise!</p>
+        <p style="color: #ff9a9e; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem;">A Special Surpise</p>
+        <div class="heart-container" onclick="nextCard(2)">
+            <div class="giant-heart">💖</div>
+        </div>
+        <h2>Tap to Open, Roja!</h2>
+        <p>A little magical journey made just for your 21st birthday.</p>
     </div>
 
-    <!-- Step 2 -->
+    <!-- STEP 2: Milestone Intro -->
     <div class="card" id="step2">
-        <div style="font-size: 50px; margin-bottom: 10px;">🌳</div>
-        <h2>It's officially your day</h2>
-        <h1>Happy Birthday, Roja!</h1>
-        <p>And just like that, you're turning 21...</p>
-        <button class="btn" onclick="nextStep(3)">Pop the balloons ➔</button>
+        <img class="cute-sticker" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z2dG5xZ3gxeW5ycWpxYTZmYm54MDFid25zcHFndWV2MGk3bmF0cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/C9x8gX02fJ3UU407J4/giphy.gif" alt="Cute Cat">
+        <h2>It's Officially Your Day!</h2>
+        <h1>Happy 21st, Roja! ✨</h1>
+        <p>Stepping into a brand new chapter filled with endless joy, beauty, and bright moments.</p>
+        <button class="btn" onclick="nextCard(3)">Pop the Balloons 🎈</button>
     </div>
 
-    <!-- Step 3 -->
+    <!-- STEP 3: Balloon Pop Interactive Game -->
     <div class="card" id="step3">
-        <h2>Pop the balloons 🎈</h2>
-        <p style="font-size: 0.85rem;">Pop all 5 balloons to continue!</p>
-        <div class="balloon-area" id="balloon-container"></div>
-        <div id="tags-area"></div>
-        <button class="btn" id="balloon-next-btn" style="display:none;" onclick="nextStep(4)">Make a wish ➔</button>
+        <h2>Pop the Birthday Balloons</h2>
+        <p style="font-size: 0.85rem;">Tap each balloon to discover sweet reasons why you're amazing!</p>
+        
+        <div class="message-box" id="msg-display">Tap a balloon below 👇</div>
+
+        <div class="balloon-grid" id="balloon-container">
+            <!-- Balloons will be loaded dynamically -->
+        </div>
+
+        <button class="btn" id="balloon-next" style="display:none; margin-top: 10px;" onclick="nextCard(4)">Make a Wish 🎂</button>
     </div>
 
-    <!-- Step 4 -->
+    <!-- STEP 4: Cake & Candle Blowing -->
     <div class="card" id="step4">
-        <h2>Baking something sweet... 🎂</h2>
-        <p>Tap each candle flame to blow them out.</p>
-        <div class="cake-container">
-            <div class="candles-group">
-                <div class="candle"><div class="flame" onclick="blowCandle(this)"></div></div>
-                <div class="candle"><div class="flame" onclick="blowCandle(this)"></div></div>
-                <div class="candle"><div class="flame" onclick="blowCandle(this)"></div></div>
-                <div class="candle"><div class="flame" onclick="blowCandle(this)"></div></div>
+        <h2>Time for Cake! 🎂</h2>
+        <p>Tap each glowing candle flame to blow them out and make a wish.</p>
+        
+        <div class="cake-wrapper">
+            <div class="candles-row">
+                <div class="single-candle"><div class="fire" onclick="extinguishFire(this)"></div></div>
+                <div class="single-candle"><div class="fire" onclick="extinguishFire(this)"></div></div>
+                <div class="single-candle"><div class="fire" onclick="extinguishFire(this)"></div></div>
+                <div class="single-candle"><div class="fire" onclick="extinguishFire(this)"></div></div>
             </div>
-            <div class="cake-base"></div>
+            <div class="cake-body"></div>
         </div>
-        <div id="wish-success" style="display:none; margin-top:15px;">
-            <p style="color:#ffd700; font-weight:bold;">All candles blown!</p>
-            <button class="btn" onclick="nextStep(5)">Open your letter ➔</button>
+
+        <div id="cake-success" style="display:none; margin-top: 15px;">
+            <p style="color: #ff9a9e; font-weight: 600;">All candles blown! Wish granted ✨</p>
+            <button class="btn" onclick="nextCard(5)">Open Your Letter 💌</button>
         </div>
     </div>
 
-    <!-- Step 5 -->
+    <!-- STEP 5: Typewriter Letter -->
     <div class="card" id="step5">
-        <h2>One last thing, Roja...</h2>
-        <p>Tap the envelope to read your letter.</p>
-        <div class="envelope-icon" onclick="openEnvelope()">💌</div>
-        <div id="letter-box-container" style="display:none;">
-            <div class="letter-content" id="typed-letter"></div>
-            <button class="btn" onclick="nextStep(6)">Final Surprise ➔</button>
+        <h2>A Letter For You 💌</h2>
+        <p>Tap the envelope to unfold your personal note.</p>
+        
+        <div class="envelope" onclick="openEnvelope()">✉️</div>
+
+        <div id="letter-container" style="display:none;">
+            <div class="letter-paper" id="typed-text"></div>
+            <button class="btn" style="margin-top: 10px;" onclick="nextCard(6)">Final Surprise 🎉</button>
         </div>
     </div>
 
-    <!-- Step 6 -->
+    <!-- STEP 6: Final Celebration Screen -->
     <div class="card" id="step6">
-        <img class="cat-sticker-img" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHc3ZnZ5eW8xbjFkZmJ4OHRtczVxbDk5NG9zZjI1dnpnYXVsaGlweCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Kxsc0vO1I7vO3O26nZ/giphy.gif" alt="Cat">
-        <h2>HAPPY BIRTHDAY</h2>
-        <h1 style="color:#ffd700;">Roja! ✨</h1>
-        <p>Made with love, just for you.</p>
+        <img class="cute-sticker" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHc3ZnZ5eW8xbjFkZmJ4OHRtczVxbDk5NG9zZjI1dnpnYXVsaGlweCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Kxsc0vO1I7vO3O26nZ/giphy.gif" alt="Party Cat">
+        <h1>Stay Wonderful!</h1>
+        <h2>Happy Birthday, Roja! ❤️✨</h2>
+        <p>May your 21st year bring you all the success, love, and happiness you truly deserve.</p>
     </div>
 
     <script>
-        function nextStep(step) {
+        function nextCard(cardNum) {
             document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
-            document.getElementById('step' + step).classList.add('active');
-            if(step === 3) startBalloons();
+            document.getElementById('step' + cardNum).classList.add('active');
+            
+            if(cardNum === 3) initBalloons();
         }
 
-        function startBalloons() {
-            const container = document.getElementById('balloon-container');
-            container.innerHTML = '';
-            const colors = ['#ff7675', '#fd79a8', '#ffeaa7', '#74b9ff', '#a29bfe'];
-            const texts = [
-                "You make ordinary days feel special ✨",
-                "My worst days get shorter when you call 💖",
-                "You believed in me when I didn't 🌸",
-                "Your laugh is my favourite sound 👑",
-                "The world is kinder with you in it 🌟"
-            ];
-            let popped = 0;
+        /* Balloon Game Logic */
+        const compliments = [
+            "You make ordinary days feel extraordinarily bright ✨",
+            "Your smile lights up every room you enter 💖",
+            "You have the kindest and purest heart 🌸",
+            "Your laugh is absolute favorite sound 🎶",
+            "The world is so much better with you in it 🌟"
+        ];
+        let poppedCount = 0;
 
-            for(let i=0; i<5; i++) {
+        function initBalloons() {
+            const container = document.getElementById('balloon-container');
+            if(container.children.length > 0) return; // Load only once
+            
+            const colors = ['#ff758c', '#a1c4fd', '#ffecd2', '#cf9fff', '#8fd3f4'];
+            
+            for(let i = 0; i < 5; i++) {
                 let b = document.createElement('div');
-                b.className = 'real-balloon';
-                b.style.backgroundColor = colors[i];
-                b.style.left = (i * 18 + 5) + '%';
-                b.style.animationDelay = (i * 0.4) + 's';
+                b.className = 'cute-balloon';
+                b.style.background = colors[i];
+                b.innerHTML = '🎈';
                 
+                let text = compliments[i];
                 b.onclick = function() {
-                    this.remove();
-                    let tag = document.createElement('div');
-                    tag.className = 'compliment-tag';
-                    tag.innerText = texts[i];
-                    document.getElementById('tags-area').appendChild(tag);
-                    if(typeof confetti === 'function') confetti({ particleCount: 20, spread: 40 });
+                    this.style.opacity = '0.3';
+                    this.style.pointerEvents = 'none';
+                    document.getElementById('msg-display').innerText = text;
+                    if(typeof confetti === 'function') confetti({ particleCount: 30, spread: 50 });
                     
-                    popped++;
-                    if(popped === 5) {
-                        document.getElementById('balloon-next-btn').style.display = 'inline-block';
+                    poppedCount++;
+                    if(poppedCount === 5) {
+                        document.getElementById('balloon-next').style.display = 'inline-block';
                     }
                 };
                 container.appendChild(b);
             }
         }
 
-        let blown = 0;
-        function blowCandle(el) {
-            if(!el.classList.contains('off')) {
-                el.classList.add('off');
-                blown++;
-                if(blown === 4) {
-                    if(typeof confetti === 'function') confetti({ particleCount: 100, spread: 70 });
-                    document.getElementById('wish-success').style.display = 'block';
+        /* Candle Blowing Logic */
+        let blownCount = 0;
+        function extinguishFire(fireEl) {
+            if(!fireEl.classList.contains('extinguished')) {
+                fireEl.classList.add('extinguished');
+                blownCount++;
+                if(typeof confetti === 'function') confetti({ particleCount: 20, spread: 40 });
+                
+                if(blownCount === 4) {
+                    if(typeof confetti === 'function') confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
+                    document.getElementById('cake-success').style.display = 'block';
                 }
             }
         }
 
-        const letterText = "Dear Roja,\n\nEvery year, I try to find the perfect words, and every year, I fall short. Here is to the honest version: You make my most ordinary days feel worth remembering.\n\nHappy 21st birthday, my favourite person!\n\n- Siam";
+        /* Typewriter Letter Logic */
+        const letterContent = "Dear Roja,\n\nOn your 21st birthday, I just wanted to remind you how truly special you are. Every moment spent around you feels warm and memorable. May this new year of your life bring you closer to all your big dreams and fill your days with endless smiles.\n\nHappy 21st Birthday, my favorite person!\n\nWith all my warmth ✨";
 
         function openEnvelope() {
-            document.querySelector('.envelope-icon').style.display = 'none';
-            document.getElementById('letter-box-container').style.display = 'block';
-            if(typeof confetti === 'function') confetti({ particleCount: 80, spread: 60 });
+            document.querySelector('.envelope').style.display = 'none';
+            document.getElementById('letter-container').style.display = 'block';
+            if(typeof confetti === 'function') confetti({ particleCount: 100, spread: 70 });
 
-            const container = document.getElementById('typed-letter');
-            container.innerText = '';
-            let i = 0;
-            function type() {
-                if (i < letterText.length) {
-                    container.innerText += letterText.charAt(i);
-                    i++;
-                    setTimeout(type, 30);
+            const textContainer = document.getElementById('typed-text');
+            textContainer.innerText = '';
+            let index = 0;
+
+            function typeWriter() {
+                if (index < letterContent.length) {
+                    textContainer.innerText += letterContent.charAt(index);
+                    index++;
+                    setTimeout(typeWriter, 30);
                 }
             }
-            type();
+            typeWriter();
         }
     </script>
 </body>
