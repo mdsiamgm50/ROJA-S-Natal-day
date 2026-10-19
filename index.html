@@ -23,17 +23,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow-x: hidden;
+            overflow: hidden;
             position: relative;
         }
 
-        /* Enhanced Floating Sparkles & Stars Animation */
         .stars {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
             background: radial-gradient(2px 2px at 20px 30px, #fff, rgba(0,0,0,0)),
                         radial-gradient(2px 2px at 40px 70px, #ff758c, rgba(0,0,0,0)),
@@ -43,11 +39,9 @@
         }
 
         @keyframes twinkle {
-            0% { opacity: 0.4; transform: scale(1); }
-            100% { opacity: 1; transform: scale(1.05); }
+            0% { opacity: 0.4; } 100% { opacity: 1; }
         }
 
-        /* Modern Glass Card Container */
         .card {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(20px);
@@ -65,19 +59,15 @@
             animation: cardAppear 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
-        .card.active {
-            display: block;
-        }
+        .card.active { display: block; }
 
         @keyframes cardAppear {
             from { opacity: 0; transform: translateY(30px) scale(0.9); }
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* Animated Cute Cat Sticker */
         .cat-sticker-img {
-            width: 120px;
-            height: 120px;
+            width: 120px; height: 120px;
             margin: 0 auto 15px;
             object-fit: contain;
             display: block;
@@ -106,270 +96,188 @@
 
         .btn {
             background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
-            color: white;
-            border: none;
-            padding: 12px 32px;
-            border-radius: 30px;
-            font-size: 1rem;
-            font-weight: 600;
+            color: white; border: none;
+            padding: 12px 32px; border-radius: 30px;
+            font-size: 1rem; font-weight: 600;
             cursor: pointer;
             box-shadow: 0 8px 20px rgba(255, 117, 140, 0.4);
             transition: all 0.3s ease;
         }
 
-        .btn:hover {
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 12px 25px rgba(255, 117, 140, 0.6);
-        }
+        .btn:hover { transform: translateY(-3px) scale(1.03); }
 
-        /* Step 1: Interactive Heart */
         .heart-box {
-            font-size: 80px;
-            cursor: pointer;
+            font-size: 80px; cursor: pointer;
             animation: pulseHeart 1.2s infinite alternate;
-            margin: 20px 0;
-            display: inline-block;
-            filter: drop-shadow(0 0 15px rgba(255, 71, 87, 0.6));
+            margin: 20px 0; display: inline-block;
         }
 
         @keyframes pulseHeart {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.2); }
+            0% { transform: scale(1); } 100% { transform: scale(1.2); }
         }
 
-        /* Age Slot Machine Screen */
-        .number-box-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
-        }
-
+        .number-box-container { display: flex; justify-content: center; gap: 15px; margin: 20px 0; }
         .number-box {
             background: rgba(0, 0, 0, 0.4);
             border: 2px solid #ffd700;
             border-radius: 15px;
-            width: 75px;
-            height: 95px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 3rem;
-            font-weight: bold;
-            color: #ffd700;
-            box-shadow: inset 0 0 15px rgba(255,215,0,0.3);
+            width: 75px; height: 95px;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 3rem; font-weight: bold; color: #ffd700;
         }
 
-        .spin-anim {
-            animation: spinNumber 0.8s ease-in-out;
-        }
-
+        .spin-anim { animation: spinNumber 0.8s ease-in-out; }
         @keyframes spinNumber {
             0% { transform: rotateX(0deg); opacity: 0.2; }
-            50% { transform: rotateX(180deg); }
             100% { transform: rotateX(360deg); opacity: 1; }
         }
 
-        /* Stationary Floating Balloons Screen */
+        /* Floating Balloons (With Strings) */
         .balloon-area {
-            height: 180px;
+            height: 220px;
             position: relative;
-            margin: 15px 0;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
+            margin: 10px 0;
+            overflow: hidden;
         }
 
-        .real-balloon {
-            width: 55px;
-            height: 70px;
+        .flying-balloon {
+            width: 50px;
+            height: 65px;
             border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            position: absolute;
+            bottom: -90px;
             cursor: pointer;
-            position: relative;
-            box-shadow: inset -5px -5px 12px rgba(0,0,0,0.4);
-            animation: gentleSway 3s infinite ease-in-out alternate;
+            box-shadow: inset -6px -6px 15px rgba(0,0,0,0.4);
+            animation: flyUpBalloon 5.5s infinite linear;
         }
 
-        .real-balloon::after {
+        /* Balloon String (Suta) */
+        .flying-balloon::after {
             content: '';
             position: absolute;
-            bottom: -12px;
+            bottom: -22px;
             left: 50%;
             transform: translateX(-50%);
             width: 2px;
-            height: 15px;
-            background: rgba(255,255,255,0.6);
+            height: 22px;
+            background: rgba(255, 255, 255, 0.75);
         }
 
-        @keyframes gentleSway {
-            0% { transform: translateY(0) rotate(-5deg); }
-            100% { transform: translateY(-12px) rotate(5deg); }
+        @keyframes flyUpBalloon {
+            0% { bottom: -90px; transform: translateX(0); opacity: 1; }
+            50% { transform: translateX(18px); }
+            100% { bottom: 260px; transform: translateX(-18px); opacity: 0.8; }
         }
 
         .compliment-tag {
             background: rgba(255,215,0,0.2);
             border: 1px solid #ffd700;
-            padding: 6px 14px;
-            border-radius: 15px;
-            display: inline-block;
-            margin: 4px;
-            font-size: 0.85rem;
-            animation: fadeIn 0.4s ease;
+            padding: 6px 14px; border-radius: 15px;
+            display: inline-block; margin: 4px; font-size: 0.85rem;
+            animation: fadeIn 0.3s ease;
         }
 
-        /* Large Realistic Cake & Candles */
-        .cake-wrapper {
+        /* Realistic Cake & Candles */
+        .cake-container {
             position: relative;
-            margin: 25px auto 10px;
-            width: 260px;
-            height: 180px;
-            background: url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=500&q=80') center/cover no-repeat;
-            border-radius: 20px;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.6);
-            border: 3px solid rgba(255,255,255,0.3);
+            margin: 20px auto;
+            width: 240px; height: 160px;
+            background: linear-gradient(to bottom, #ff9ff3, #f368e0);
+            border-radius: 20px 20px 10px 10px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            border: 4px solid #fff;
+        }
+
+        .cake-frosting {
+            position: absolute; top: 0; width: 100%; height: 40px;
+            background: #ffffff; border-radius: 15px 15px 10px 10px;
+            box-shadow: inset 0 -5px 10px rgba(0,0,0,0.1);
         }
 
         .candles-group {
-            display: flex;
-            justify-content: space-evenly;
-            width: 180px;
-            position: absolute;
-            top: 10px;
-            left: 40px;
+            display: flex; justify-content: space-around;
+            width: 160px; position: absolute; top: -35px; left: 40px;
         }
 
         .candle-item {
-            width: 12px;
-            height: 40px;
-            background: repeating-linear-gradient(45deg, #fff, #fff 5px, #ff4757 5px, #ff4757 10px);
-            border-radius: 4px;
-            position: relative;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            width: 10px; height: 35px;
+            background: repeating-linear-gradient(45deg, #fff, #fff 4px, #ff4757 4px, #ff4757 8px);
+            border-radius: 3px; position: relative;
         }
 
         .flame {
-            width: 14px;
-            height: 22px;
+            width: 12px; height: 18px;
             background: radial-gradient(circle, #fffa75, #ff4757);
-            border-radius: 50% 50% 20% 20%;
-            position: absolute;
-            top: -22px;
-            left: -1px;
-            cursor: pointer;
-            box-shadow: 0 0 12px #fffa75;
-            animation: flicker 0.5s infinite alternate;
+            border-radius: 50% 50% 20% 20%; position: absolute;
+            top: -18px; left: -1px; cursor: pointer;
+            box-shadow: 0 0 12px #fffa75; animation: flicker 0.4s infinite alternate;
         }
 
-        .flame.off {
-            display: none;
-        }
+        .flame.off { display: none; }
 
-        /* Smoke Animation */
         .smoke {
-            position: absolute;
-            top: -30px;
-            left: -2px;
-            width: 18px;
-            height: 30px;
+            position: absolute; top: -25px; left: -3px;
+            width: 16px; height: 25px;
             background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(200,200,200,0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
+            border-radius: 50%; pointer-events: none;
             animation: riseSmoke 1.2s ease-out forwards;
         }
 
         @keyframes riseSmoke {
             0% { transform: translateY(0) scale(0.5); opacity: 1; }
-            100% { transform: translateY(-40px) scale(2); opacity: 0; }
+            100% { transform: translateY(-35px) scale(2); opacity: 0; }
         }
 
-        @keyframes flicker {
-            0% { transform: scale(1) rotate(-3deg); }
-            100% { transform: scale(1.15) rotate(3deg); }
+        @keyframes flicker { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
+
+        /* Realistic Cutting Section */
+        .cutting-section { display: none; margin-top: 15px; }
+        
+        .realistic-cake-cut {
+            position: relative; width: 240px; height: 160px;
+            margin: 0 auto; cursor: pointer;
         }
 
-        /* Cake Cutting Section */
-        .cutting-section {
-            display: none;
-            margin-top: 15px;
+        .cake-left-half, .cake-right-half {
+            position: absolute; top: 0; width: 120px; height: 160px;
+            background: linear-gradient(to bottom, #ff9ff3, #f368e0);
+            border-radius: 20px 0 0 10px; border: 4px solid #fff;
+            overflow: hidden; transition: transform 0.8s ease-in-out;
         }
 
-        .cake-slice-area {
-            position: relative;
-            width: 260px;
-            height: 150px;
-            margin: 0 auto;
-            background: url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=500&q=80') center/cover no-repeat;
-            border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-            overflow: hidden;
-            cursor: pointer;
-            border: 3px dashed #ffd700;
+        .cake-right-half {
+            left: 120px; border-radius: 0 20px 10px 0;
+            background: linear-gradient(to bottom, #f368e0, #ff9ff3);
         }
 
-        .knife {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 45px;
-            user-select: none;
-            transition: transform 0.4s ease-in-out;
-            z-index: 10;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+        .knife-cut {
+            position: absolute; top: 10px; left: 100px; font-size: 40px;
+            z-index: 20; transition: transform 0.6s ease;
         }
 
-        .cut-line {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 4px;
-            height: 100%;
-            background: #ffffff;
-            box-shadow: 0 0 15px #ff758c;
-            display: none;
-            transform: translateX(-50%);
-        }
-
-        /* Letter Box */
         .letter-content {
-            text-align: left;
-            background: rgba(0,0,0,0.3);
-            padding: 18px;
-            border-radius: 18px;
-            font-size: 0.9rem;
-            max-height: 180px;
-            overflow-y: auto;
-            margin-bottom: 15px;
-            border: 1px solid rgba(255,255,255,0.15);
-            line-height: 1.6;
+            text-align: left; background: rgba(0,0,0,0.3);
+            padding: 18px; border-radius: 18px; font-size: 0.9rem;
+            max-height: 180px; overflow-y: auto; margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.15); line-height: 1.6;
         }
 
-        /* Final Gift */
-        .gift-box-icon {
-            font-size: 85px;
-            cursor: pointer;
-            animation: bounce 1.5s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
+        .gift-box-icon { font-size: 85px; cursor: pointer; animation: bounce 1.5s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
     </style>
 </head>
 <body>
 
     <div class="stars"></div>
 
-    <!-- Screen 1: Welcome -->
     <div class="card active" id="step1">
         <div class="heart-box" onclick="nextStep(2)">❤️</div>
         <h1>Hello, Roja!</h1>
         <p>A magical birthday journey is waiting for you...</p>
     </div>
 
-    <!-- Screen 2: Age Slot Machine (21 Years) -->
     <div class="card" id="step2">
-        <img class="cat-sticker-img" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z2dG5xZ3gxeW5ycWpxYTZmYm54MDFid25zcHFndWV2MGk3bmF0cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/C9x8gX02fJ3UU407J4/giphy.gif" alt="Cute Cat">
+        <img class="cat-sticker-img" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z2dG5xZ3gxeW5ycWpxYTZmYm54MDFid25zcHFndWV2MGk3bmF0cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/C9x8gX02fJ3UU407J4/giphy.gif" alt="Cat">
         <h2>A Special Milestone</h2>
         <p>Let's see how many wonderful years you've collected...</p>
         <div class="number-box-container">
@@ -381,23 +289,21 @@
         <button class="btn" id="next2-btn" style="display:none;" onclick="nextStep(3)">Continue ➔</button>
     </div>
 
-    <!-- Screen 3: Pop the Balloons -->
     <div class="card" id="step3">
         <h2>Pop the Balloons</h2>
-        <p>Tap the floating balloons to see why you're amazing ❤️</p>
+        <p>Tap the flying balloons to catch the magic ❤️</p>
         <div class="balloon-area" id="balloon-container"></div>
         <div id="tags-area"></div>
         <br>
         <button class="btn" onclick="nextStep(4)">Make a Wish 🎂</button>
     </div>
 
-    <!-- Screen 4: Realistic Cake, Smoke & Cutting -->
     <div class="card" id="step4">
         <h2>Make a Wish & Cut the Cake!</h2>
-        <p id="cake-instruction">Tap each candle flame to blow them out (with smoke effect).</p>
+        <p id="cake-instruction">Tap each candle flame to blow them out.</p>
         
-        <!-- Before blowing candles -->
-        <div class="cake-wrapper" id="cake-box">
+        <div class="cake-container" id="cake-box">
+            <div class="cake-frosting"></div>
             <div class="candles-group">
                 <div class="candle-item"><div class="flame" onclick="blowCandle(this)"></div></div>
                 <div class="candle-item"><div class="flame" onclick="blowCandle(this)"></div></div>
@@ -406,24 +312,27 @@
             </div>
         </div>
 
-        <!-- After blowing candles: Knife & Cake Cutting Section -->
         <div class="cutting-section" id="cutting-section">
-            <p style="color:#ffd700; font-size:0.85rem; margin-bottom:10px;">Tap on the knife to cut the cake!</p>
-            <div class="cake-slice-area" id="cake-slice-area" onclick="cutCakeSlice()">
-                <div class="cut-line" id="cut-line"></div>
-                <div class="knife" id="knife">🔪</div>
+            <p style="color:#ffd700; font-size:0.85rem; margin-bottom:5px;">Tap the cake to cut your slice!</p>
+            <div class="realistic-cake-cut" onclick="cutCakeSlice()">
+                <div class="knife-cut" id="knife-el">🔪</div>
+                <div class="cake-left-half" id="left-cake">
+                    <div style="position:absolute; top:0; width:100%; height:30px; background:#fff;"></div>
+                </div>
+                <div class="cake-right-half" id="right-cake">
+                    <div style="position:absolute; top:0; width:100%; height:30px; background:#fff;"></div>
+                </div>
             </div>
         </div>
 
         <div id="wish-success" style="display:none; margin-top:15px;">
-            <h2 style="font-size:1.6rem; color:#ffd700;">Deliciously Cut! 🎉</h2>
+            <h2 style="font-size:1.6rem; color:#ffd700;">Successfully Cut! 🎉</h2>
             <button class="btn" onclick="nextStep(5)">Open Your Letter ✉️</button>
         </div>
     </div>
 
-    <!-- Screen 5: Birthday Letter -->
     <div class="card" id="step5">
-        <img class="cat-sticker-img" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHc3ZnZ5eW8xbjFkZmJ4OHRtczVxbDk5NG9zZjI1dnpnYXVsaGlweCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Kxsc0vO1I7vO3O26nZ/giphy.gif" alt="Party Cat">
+        <img class="cat-sticker-img" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHc3ZnZ5eW8xbjFkZmJ4OHRtczVxbDk5NG9zZjI1dnpnYXVsaGlweCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Kxsc0vO1I7vO3O26nZ/giphy.gif" alt="Cat">
         <h2>My Dear Roja</h2>
         <div class="letter-content">
             <p>Today is a beautiful reminder of how lucky I am to have someone as amazing as you in my life.</p>
@@ -433,7 +342,6 @@
         <button class="btn" onclick="nextStep(6)">One Last Thing ➔</button>
     </div>
 
-    <!-- Screen 6: Final Gift Box -->
     <div class="card" id="step6">
         <h2>One Last Thing For You...</h2>
         <p>Tap the gift to open your final surprise!</p>
@@ -451,18 +359,14 @@
             if(stepNumber === 3) startBalloons();
         }
 
-        /* Age Spin Logic (21) */
         function spinAge() {
             let n1 = document.getElementById('num1');
             let n2 = document.getElementById('num2');
-            n1.classList.add('spin-anim');
-            n2.classList.add('spin-anim');
+            n1.classList.add('spin-anim'); n2.classList.add('spin-anim');
 
             setTimeout(() => {
-                n1.innerText = '2';
-                n2.innerText = '1';
-                n1.classList.remove('spin-anim');
-                n2.classList.remove('spin-anim');
+                n1.innerText = '2'; n2.innerText = '1';
+                n1.classList.remove('spin-anim'); n2.classList.remove('spin-anim');
                 document.getElementById('age-text').style.display = 'block';
                 document.getElementById('spin-btn').style.display = 'none';
                 document.getElementById('next2-btn').style.display = 'inline-block';
@@ -470,20 +374,21 @@
             }, 800);
         }
 
-        /* Balloons Logic */
-        const compliments = ["Beautiful 💖", "Kind 🌸", "Smart ✨", "Pretty 👑", "Caring 🌟"];
+        /* Compliments list without 'Caring' */
+        const compliments = ["Beautiful 💖", "Kind 🌸", "Smart ✨", "Pretty 👑"];
         function startBalloons() {
             const container = document.getElementById('balloon-container');
             container.innerHTML = '';
-            const colors = ['#ff7675', '#fd79a8', '#ffeaa7', '#74b9ff', '#a29bfe'];
+            const colors = ['#ff7675', '#fd79a8', '#ffeaa7', '#74b9ff'];
 
-            for(let i=0; i<5; i++) {
+            for(let i=0; i<4; i++) {
                 let b = document.createElement('div');
-                b.className = 'real-balloon';
+                b.className = 'flying-balloon';
                 b.style.backgroundColor = colors[i];
-                b.style.animationDelay = (i * 0.4) + 's';
+                b.style.left = (i * 22 + 8) + '%';
+                b.style.animationDelay = (i * 0.9) + 's';
                 b.onclick = function() {
-                    this.style.visibility = 'hidden';
+                    this.remove();
                     let tag = document.createElement('span');
                     tag.className = 'compliment-tag';
                     tag.innerText = compliments[i];
@@ -494,56 +399,50 @@
             }
         }
 
-        /* Blow Candles with Smoke Effect */
         let blownCount = 0;
         function blowCandle(flameElement) {
             if(!flameElement.classList.contains('off')) {
                 let smoke = document.createElement('div');
                 smoke.className = 'smoke';
                 flameElement.parentElement.appendChild(smoke);
-
                 flameElement.classList.add('off');
                 blownCount++;
 
-                setTimeout(() => {
-                    smoke.remove();
-                }, 1200);
+                setTimeout(() => { smoke.remove(); }, 1200);
 
                 if(blownCount === 4) {
                     confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
                     setTimeout(() => {
                         document.getElementById('cake-box').style.display = 'none';
                         document.getElementById('cutting-section').style.display = 'block';
-                        document.getElementById('cake-instruction').innerText = "Now tap the knife to cut the cake!";
+                        document.getElementById('cake-instruction').innerText = "Now tap to cut your cake!";
                     }, 800);
                 }
             }
         }
 
-        /* Interactive Cake Cutting */
-        let isCut = false;
+        let isSliced = false;
         function cutCakeSlice() {
-            if(isCut) return;
-            isCut = true;
+            if(isSliced) return;
+            isSliced = true;
 
-            let cutLine = document.getElementById('cut-line');
-            let knife = document.getElementById('knife');
-            
-            knife.style.transform = 'translate(-80px, 40px) rotate(-45deg)';
-            
+            let knife = document.getElementById('knife-el');
+            knife.style.transform = 'translate(-20px, 30px) rotate(-30deg)';
+
             setTimeout(() => {
-                cutLine.style.display = 'block';
+                document.getElementById('left-cake').style.transform = 'translateX(-30px) rotate(-8deg)';
+                document.getElementById('right-cake').style.transform = 'translateX(30px) rotate(8deg)';
+                knife.style.opacity = '0';
                 confetti({ particleCount: 180, spread: 90, origin: { y: 0.6 } });
-            }, 300);
+            }, 400);
 
             setTimeout(() => {
                 document.getElementById('cutting-section').style.display = 'none';
                 document.getElementById('cake-instruction').style.display = 'none';
                 document.getElementById('wish-success').style.display = 'block';
-            }, 1000);
+            }, 1200);
         }
 
-        /* Final Gift Logic */
         function openGift() {
             confetti({ particleCount: 200, spread: 100 });
             document.getElementById('final-message').style.display = 'block';
